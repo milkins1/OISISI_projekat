@@ -1,8 +1,8 @@
-﻿namespace Core.Models
+﻿namespace Oisisi.Core.Models;
+
+public enum Status
 {
-    public enum Status
-    {
-        Redovan,
-        VIP
-    }
+    Redovan,
+    VIP
 }
+
