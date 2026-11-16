@@ -6,13 +6,13 @@ namespace Oisisi.Core.DAO;
 
 public class IzdavacDao : IIzdavacDao
 {
-    private readonly string _putanja;
     private readonly List<Izdavac> _izdavaci;
+    private readonly Storage<Izdavac> _storage;
 
     public IzdavacDao(string putanja)
     {
-        _putanja = putanja;
-        _izdavaci = JsonStorage.Load<Izdavac>(_putanja);
+        _storage = new Storage<Izdavac>("izdavaci.txt");
+        _izdavaci = _storage.Load();
     }
 
     public List<Izdavac> GetAll()
@@ -22,18 +22,19 @@ public class IzdavacDao : IIzdavacDao
 
     public Izdavac? GetById(int id)
     {
-        return _izdavaci.FirstOrDefault(i => i.Id == id);
+        return _izdavaci.Find(i => i.Id == id);
     }
 
     public Izdavac? GetBySifra(string sifra)
     {
-        return _izdavaci.FirstOrDefault(i => string.Equals(i.Sifra, sifra, StringComparison.OrdinalIgnoreCase));
+        return _izdavaci.Find(i => i.Sifra.ToLower() == sifra.ToLower());
     }
 
     public void Add(Izdavac izdavac)
     {
         izdavac.Id = GenerisiId();
         _izdavaci.Add(izdavac);
+        Save();
     }
 
     public bool Update(Izdavac izdavac)
@@ -44,6 +45,7 @@ public class IzdavacDao : IIzdavacDao
             return false;
         }
         _izdavaci[index] = izdavac;
+        Save();
         return true;
     }
 
@@ -55,12 +57,13 @@ public class IzdavacDao : IIzdavacDao
             return false;
         }
         _izdavaci.Remove(postojeci);
+        Save();
         return true;
     }
 
     public void Save()
     {
-        JsonStorage.Save(_putanja, _izdavaci);
+        _storage.Save(_izdavaci);
     }
 
     private int GenerisiId()
@@ -70,6 +73,6 @@ public class IzdavacDao : IIzdavacDao
             return 1;
         }
 
-        return _izdavaci.Max(i => i.Id) + 1;
+        return _izdavaci[^1].Id + 1;
     }
 }
