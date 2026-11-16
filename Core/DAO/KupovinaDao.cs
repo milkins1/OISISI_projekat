@@ -6,13 +6,13 @@ namespace Oisisi.Core.DAO;
 
 public class KupovinaDao : IKupovinaDao
 {
-    private readonly string _putanja;
     private readonly List<Kupovina> _kupovine;
+    private readonly Storage<Kupovina> _storage;
 
-    public KupovinaDao(string putanja)
+    public KupovinaDao()
     {
-        _putanja = putanja;
-        _kupovine = JsonStorage.Load<Kupovina>(_putanja);
+        _storage = new Storage<Kupovina>("kupovine.txt");
+        _kupovine = _storage.Load();
     }
 
     public List<Kupovina> GetAll()
@@ -22,18 +22,19 @@ public class KupovinaDao : IKupovinaDao
 
     public Kupovina? GetById(int id)
     {
-        return _kupovine.FirstOrDefault(k => k.Id == id);
+        return _kupovine.Find(k => k.Id == id);
     }
 
     public List<Kupovina> GetByPosetilacId(int posetilacId)
     {
-        return _kupovine.Where(k => k.PosetilacId == posetilacId).ToList();
+        return _kupovine.FindAll(k => k.PosetilacId == posetilacId);
     }
 
     public void Add(Kupovina kupovina)
     {
         kupovina.Id = GenerisiId();
         _kupovine.Add(kupovina);
+        Save();
     }
 
     public bool Update(Kupovina kupovina)
@@ -45,6 +46,7 @@ public class KupovinaDao : IKupovinaDao
         }
 
         _kupovine[index] = kupovina;
+        Save();
         return true;
     }
 
@@ -57,12 +59,13 @@ public class KupovinaDao : IKupovinaDao
         }
 
         _kupovine.Remove(postojeca);
+        Save();
         return true;
     }
 
     public void Save()
     {
-        JsonStorage.Save(_putanja, _kupovine);
+        _storage.Save(_kupovine);
     }
 
     private int GenerisiId()
@@ -72,6 +75,6 @@ public class KupovinaDao : IKupovinaDao
             return 1;
         }
 
-        return _kupovine.Max(k => k.Id) + 1;
+        return _kupovine[^1].Id + 1;
     }
 }
