@@ -6,13 +6,13 @@ namespace Oisisi.Core.DAO;
 
 public class PosetilacDao : IPosetilacDao
 {
-    private readonly string _putanja;
     private readonly List<Posetilac> _posetioci;
+    private readonly Storage<Posetilac> _storage;
 
-    public PosetilacDao(string putanja)
+    public PosetilacDao()
     {
-        _putanja = putanja;
-        _posetioci = JsonStorage.Load<Posetilac>(_putanja);
+        _storage = new Storage<Posetilac>("posetioci.txt");
+        _posetioci = _storage.Load();
     }
 
     public List<Posetilac> GetAll()
@@ -22,13 +22,14 @@ public class PosetilacDao : IPosetilacDao
 
     public Posetilac? GetById(int id)
     {
-        return _posetioci.FirstOrDefault(p =>  p.Id == id);
+        return _posetioci.Find(p =>  p.Id == id);
     }
 
     public void Add(Posetilac posetilac)
     {
         posetilac.Id = GenerisiId();
         _posetioci.Add(posetilac);
+        Save();
     }
 
     public bool Update(Posetilac posetilac)
@@ -40,6 +41,7 @@ public class PosetilacDao : IPosetilacDao
         }
 
         _posetioci[index] = posetilac;
+        Save();
         return true;
     }
 
@@ -52,12 +54,13 @@ public class PosetilacDao : IPosetilacDao
         }
 
         _posetioci.Remove(postojeci);
+        Save();
         return true;
     }
 
     public void Save()
     {
-        JsonStorage.Save(_putanja, _posetioci);
+        _storage.Save(_posetioci);
     }
 
     private int GenerisiId()
@@ -67,6 +70,6 @@ public class PosetilacDao : IPosetilacDao
             return 1;
         }
 
-        return _posetioci.Max(p => p.Id) + 1;
+        return _posetioci[^1].Id + 1;
     }
 }
