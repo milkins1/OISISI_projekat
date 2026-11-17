@@ -14,6 +14,11 @@ public class KupovinaService
         _posetilacDao = posetilacDao; 
     }
 
+    public List<Kupovina> GetAll()
+    {
+        return _kupovinaDao.GetAll();
+    }
+
     public Kupovina? GetById(int id)
     {
         return _kupovinaDao.GetById(id);
