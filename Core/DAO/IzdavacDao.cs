@@ -9,7 +9,7 @@ public class IzdavacDao : IIzdavacDao
     private readonly List<Izdavac> _izdavaci;
     private readonly Storage<Izdavac> _storage;
 
-    public IzdavacDao(string putanja)
+    public IzdavacDao()
     {
         _storage = new Storage<Izdavac>("izdavaci.txt");
         _izdavaci = _storage.Load();
