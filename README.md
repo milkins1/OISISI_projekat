@@ -31,5 +31,11 @@ U okviru Core projekta kreirani su početni fajlovi za svih šest modela, kao i 
 - Uspešno izvršen Build svih projekata.
 - Provereno pokretanje početne WPF aplikacije.
 
-Trenutno su implementirane samo osnove projekta. Funkcionalnosti informacionog sistema biće dodavane tokom daljeg razvoja.
+## Implementacija adresa - Mile Ivanić
+
+- Implementiran model Adresa sa CSV serijalizacijom i deserijalizacijom.
+- Dodati IAdresaDao, AdresaDao i AdresaService.
+- Implementirani i testirani konzolni prikaz,dodavanje,izmena i brisanje adresa.
+- Adrese su povezane sa glavnim konzolnim menijem.
+- Dodate provere obaveznih polja i nedozvoljenih znakova.
 

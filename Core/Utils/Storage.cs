@@ -35,7 +35,7 @@ public class Storage<T> where T : ISerializable, new()
     public void Save(List<T> objects)
     {
         string serializedObjects = _serializer.ToCSV(objects);
-        using (StreamWriter sw = new StreamWriter(serializedObjects))
+        using (StreamWriter sw = new StreamWriter(_filePath))
         {
             sw.Write(serializedObjects);
         }

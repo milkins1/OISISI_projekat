@@ -24,10 +24,15 @@ class Program
         KupovinaController kupovinaController = new KupovinaController(kupovinaService);
         IzdavacController izdavacController = new IzdavacController(izdavacService);
 
-        RunMainMenu(posetilacController, kupovinaController, izdavacController);
+        AdresaDao adresaDao = new AdresaDao();
+        AdresaService adresaService = new AdresaService(adresaDao);
+        AdresaController adresaController = new AdresaController(adresaService);
+
+        RunMainMenu(posetilacController, kupovinaController,
+            izdavacController, adresaController);
     }
 
-    static void RunMainMenu(PosetilacController posetilacController, KupovinaController kupovinaController, IzdavacController izdavacController)
+    static void RunMainMenu(PosetilacController posetilacController, KupovinaController kupovinaController, IzdavacController izdavacController, AdresaController adresaController)
     {
         while(true)
         {
@@ -35,6 +40,7 @@ class Program
             Console.WriteLine("1: Posetioci");
             Console.WriteLine("2: Kupovine");
             Console.WriteLine("3: Izdavaci");
+            Console.WriteLine("4: Adrese");
             Console.WriteLine("0: Izlaz");
 
             string userInput = Console.ReadLine() ?? "0";
@@ -53,6 +59,9 @@ class Program
                     break;
                 case "3":
                     izdavacController.RunMenu();
+                    break;
+                case "4":
+                    adresaController.RunMenu();
                     break;
             }
         }
