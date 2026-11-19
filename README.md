@@ -31,6 +31,45 @@ U okviru Core projekta kreirani su početni fajlovi za svih šest modela, kao i 
 - Uspešno izvršen Build svih projekata.
 - Provereno pokretanje početne WPF aplikacije.
 
+## Zajednička serijalizacija - Mihailo Pljevaljičić
+
+- Implementirani ISerializable, Serializer<T> i Storage<T> po uzoru na primer CRUDExample sa vežbi.
+- Podaci se čuvaju u CSV fajlovima u folderu Data, a putanje se grade pomoću Path.Combine.
+- Dodate konverzije za datum, enum, listu ID-jeva i vrednost koja može biti prazna.
+
+## Implementacija posetilaca - Mihailo Pljevaljičić
+
+- Implementirani model Posetilac i enum Status sa CSV serijalizacijom i deserijalizacijom.
+- Dodati IPosetilacDao, PosetilacDao i PosetilacService.
+- Implementirani i testirani konzolni prikaz, dodavanje, izmena i brisanje posetilaca.
+- Posetioci su povezani sa glavnim konzolnim menijem.
+- Dodate provere obaveznih polja, jedinstvenog broja članske karte i nedozvoljenih znakova.
+- Prosečna ocena posetioca se računa iz njegovih kupovina.
+- Brisanjem posetioca brišu se i njegove kupovine.
+
+## Implementacija kupovina - Mihailo Pljevaljičić
+
+- Implementiran model Kupovina sa CSV serijalizacijom i deserijalizacijom.
+- Dodati IKupovinaDao, KupovinaDao i KupovinaService.
+- Implementirani i testirani konzolni prikaz, dodavanje, izmena i brisanje kupovina.
+- Kupovine su povezane sa glavnim konzolnim menijem.
+- Dodate provere da posetilac i knjiga postoje, da je ocena od 1 do 5 i da datum nije u budućnosti.
+
+## Implementacija izdavača - Mihailo Pljevaljičić
+
+- Implementiran model Izdavac sa CSV serijalizacijom i deserijalizacijom.
+- Dodati IIzdavacDao, IzdavacDao i IzdavacService.
+- Implementirani i testirani konzolni prikaz, dodavanje, izmena i brisanje izdavača.
+- Izdavači su povezani sa glavnim konzolnim menijem.
+- Dodate provere obaveznih polja, jedinstvene šifre i nedozvoljenih znakova.
+
+## Konzolni deo - Mihailo Pljevaljičić
+
+- Implementirani ConsoleViewUtils, PosetilacController, KupovinaController i IzdavacController.
+- ConsoleViewUtils bezbedno čita brojeve, datume i tekst iz konzole.
+- Program.cs povezuje DAO, servise i kontrolere i pokreće glavni meni.
+
+
 ## Implementacija adresa - Mile Ivanić
 
 - Implementiran model Adresa sa CSV serijalizacijom i deserijalizacijom.
