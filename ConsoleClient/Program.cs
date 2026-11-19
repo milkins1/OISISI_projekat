@@ -30,13 +30,16 @@ class Program
 
         AutorDao autorDao = new AutorDao();
         AutorService autorService = new AutorService(autorDao, adresaDao, izdavacDao);
-        AutorController autorController = new AutorController(
-            autorService, adresaService);
+        AutorController autorController = new AutorController( autorService, adresaService);
 
-        RunMainMenu(posetilacController, kupovinaController, izdavacController, adresaController, autorController);
+        KnjigaDao knjigaDao = new KnjigaDao();
+        KnjigaService knjigaService = new KnjigaService( knjigaDao, autorDao, izdavacDao, kupovinaDao, posetilacDao);
+        KnjigaController knjigaController = new KnjigaController( knjigaService, autorService, izdavacService);
+
+        RunMainMenu(posetilacController, kupovinaController, izdavacController, adresaController, autorController, knjigaController);
     }
 
-    static void RunMainMenu(PosetilacController posetilacController, KupovinaController kupovinaController, IzdavacController izdavacController, AdresaController adresaController,AutorController autorController)
+    static void RunMainMenu(PosetilacController posetilacController, KupovinaController kupovinaController, IzdavacController izdavacController, AdresaController adresaController,AutorController autorController, KnjigaController knjigaController)
     {
         while(true)
         {
@@ -46,6 +49,7 @@ class Program
             Console.WriteLine("3: Izdavaci");
             Console.WriteLine("4: Adrese");
             Console.WriteLine("5: Autori");
+            Console.WriteLine("6: Knjige");
             Console.WriteLine("0: Izlaz");
 
             string userInput = Console.ReadLine() ?? "0";
@@ -70,6 +74,9 @@ class Program
                     break;
                 case "5":
                     autorController.RunMenu();
+                    break;
+                case "6":
+                    knjigaController.RunMenu();
                     break;
             }
         }

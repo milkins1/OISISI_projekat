@@ -41,4 +41,26 @@ static class ConsoleViewUtils
         return Console.ReadLine() ?? string.Empty;
     }
 
+    public static decimal SafeInputDecimal()
+    {
+        while (true)
+        {
+            string unos = (Console.ReadLine() ?? string.Empty)
+                .Trim()
+                .Replace(',', '.');
+
+            if (decimal.TryParse(
+                unos,
+                NumberStyles.AllowLeadingSign | NumberStyles.AllowDecimalPoint,
+                CultureInfo.InvariantCulture,
+                out decimal broj))
+            {
+                return broj;
+            }
+
+            Console.WriteLine(
+                "Unesite ispravan iznos, npr. 1250,50 ili 1250.50, bez razdvajanja hiljada:");
+        }
+    }
+
 }
