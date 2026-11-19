@@ -7,11 +7,13 @@ public class KupovinaService
 {
     private readonly IKupovinaDao _kupovinaDao;
     private readonly IPosetilacDao _posetilacDao;
+    private readonly IKnjigaDao _knjigaDao;
 
-    public KupovinaService(IKupovinaDao kupovinaDao, IPosetilacDao posetilacDao)
+    public KupovinaService(IKupovinaDao kupovinaDao, IPosetilacDao posetilacDao, IKnjigaDao knjigaDao)
     {
         _kupovinaDao = kupovinaDao;
-        _posetilacDao = posetilacDao; 
+        _posetilacDao = posetilacDao;
+        _knjigaDao = knjigaDao;
     }
 
     public List<Kupovina> GetAll()
@@ -70,9 +72,9 @@ public class KupovinaService
             return "Posetilac sa tim ID-jem ne postoji.";
         }
 
-        if(kupovina.KnjigaId <= 0)
+        if(_knjigaDao.GetById(kupovina.KnjigaId) == null)
         {
-            return "ID knjige mora biti veci od nule.";
+            return "Knjiga sa tim ID-jem ne postoji";
         }
 
         if(kupovina.Ocena < 1 || kupovina.Ocena > 5)

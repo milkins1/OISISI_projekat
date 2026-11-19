@@ -15,25 +15,22 @@ class Program
         PosetilacDao posetilacDao = new PosetilacDao();
         KupovinaDao kupovinaDao = new KupovinaDao();
         IzdavacDao izdavacDao = new IzdavacDao();
+        AdresaDao adresaDao = new AdresaDao();
+        AutorDao autorDao = new AutorDao();
+        KnjigaDao knjigaDao = new KnjigaDao();
 
         PosetilacService posetilacService = new PosetilacService(posetilacDao, kupovinaDao);
-        KupovinaService kupovinaService = new KupovinaService(kupovinaDao, posetilacDao);
+        KupovinaService kupovinaService = new KupovinaService(kupovinaDao, posetilacDao, knjigaDao);
         IzdavacService izdavacService = new IzdavacService(izdavacDao);
+        AdresaService adresaService = new AdresaService(adresaDao);
+        AutorService autorService = new AutorService(autorDao, adresaDao, izdavacDao);
+        KnjigaService knjigaService = new KnjigaService(knjigaDao, autorDao, izdavacDao, kupovinaDao, posetilacDao);
 
         PosetilacController posetilacController = new PosetilacController(posetilacService);
         KupovinaController kupovinaController = new KupovinaController(kupovinaService);
         IzdavacController izdavacController = new IzdavacController(izdavacService);
-
-        AdresaDao adresaDao = new AdresaDao();
-        AdresaService adresaService = new AdresaService(adresaDao);
         AdresaController adresaController = new AdresaController(adresaService);
-
-        AutorDao autorDao = new AutorDao();
-        AutorService autorService = new AutorService(autorDao, adresaDao, izdavacDao);
         AutorController autorController = new AutorController( autorService, adresaService);
-
-        KnjigaDao knjigaDao = new KnjigaDao();
-        KnjigaService knjigaService = new KnjigaService( knjigaDao, autorDao, izdavacDao, kupovinaDao, posetilacDao);
         KnjigaController knjigaController = new KnjigaController( knjigaService, autorService, izdavacService);
 
         RunMainMenu(posetilacController, kupovinaController, izdavacController, adresaController, autorController, knjigaController);
