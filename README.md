@@ -39,3 +39,10 @@ U okviru Core projekta kreirani su početni fajlovi za svih šest modela, kao i 
 - Adrese su povezane sa glavnim konzolnim menijem.
 - Dodate provere obaveznih polja i nedozvoljenih znakova.
 
+## Implementacija autora - Mile Ivanić
+
+- Implementiran model Autor sa CSV serijalizacijom i deserijalizacijom.
+- Dodati IAutorDao, AutorDao i AutorService.
+- Implementirani i testirani konzolni prikaz,dodavanje,izmena i brisanje autora.
+- Autori su povezane sa glavnim konzolnim menijem.
+- Dodate provere obaveznih polja i nedozvoljenih znakova.
