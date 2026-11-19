@@ -46,3 +46,12 @@ U okviru Core projekta kreirani su početni fajlovi za svih šest modela, kao i 
 - Implementirani i testirani konzolni prikaz,dodavanje,izmena i brisanje autora.
 - Autori su povezane sa glavnim konzolnim menijem.
 - Dodate provere obaveznih polja i nedozvoljenih znakova.
+
+## Implementacija knjige - Mile Ivanić
+
+- Implementiran model Knjiga sa CSV serijalizacijom i deserijalizacijom.
+- Dodati IKnjigaDao, KnjigaDao i KnjigaService.
+- Implementirani i testirani konzolni prikaz,dodavanje,izmena i brisanje knjige.
+- Knjige su povezane sa glavnim konzolnim menijem.
+- Implementirano uskladjivanje veza knjige sa autorima i izdavačima.
+- Dodate provere obaveznih polja i nedozvoljenih znakova.
