@@ -4,6 +4,12 @@ using Oisisi.Core.Utils;
 
 namespace Oisisi.Core.DAO;
 
+
+/*
+Osnovni CRUD i rad sa Storage<T> prilagodjeni su prema
+primeru VehiclesDAO iz CRUDExample sa 3. vezbi.
+ */
+
 public class AutorDao : IAutorDao
 {
     private readonly List<Autor> _autori;

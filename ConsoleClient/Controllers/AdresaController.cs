@@ -122,14 +122,11 @@ class AdresaController
             return;
         }
 
-        if (_adresaService.Delete(id))
-        {
-            Console.WriteLine("Adresa obrisana.");
-        }
-        else
-        {
-            Console.WriteLine("Adresa nije pronadjena.");
-        }
+        string? greska = _adresaService.Delete(id);
+
+        Console.WriteLine(greska == null
+            ? "Adresa obrisana."
+            : $"Greska: {greska}");
     }
 
     private int InputId()

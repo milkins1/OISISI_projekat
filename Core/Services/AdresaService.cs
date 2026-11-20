@@ -6,10 +6,17 @@ namespace Oisisi.Core.Services;
 public class AdresaService
 {
     private readonly IAdresaDao _adresaDao;
+    private readonly IAutorDao _autorDao;
+    private readonly IPosetilacDao _posetilacDao;
 
-    public AdresaService(IAdresaDao adresaDao)
+    public AdresaService(
+        IAdresaDao adresaDao,
+        IAutorDao autorDao,
+        IPosetilacDao posetilacDao)
     {
         _adresaDao = adresaDao;
+        _autorDao = autorDao;
+        _posetilacDao = posetilacDao;
     }
 
     public List<Adresa> GetAll()
@@ -54,9 +61,22 @@ public class AdresaService
         return null;
     }
 
-    public bool Delete(int id)
+    public string? Delete(int id)
     {
-        return _adresaDao.Delete(id);
+        if (_adresaDao.GetById(id) == null)
+        {
+            return "Adresa nije pronadjena.";
+        }
+
+        if (_autorDao.GetAll().Any(a => a.AdresaId == id) ||
+            _posetilacDao.GetAll().Any(p => p.AdresaId == id))
+        {
+            return "Adresa je povezana sa autorom ili posetiocem i ne moze biti obrisana.";
+        }
+
+        return _adresaDao.Delete(id)
+            ? null
+            : "Adresa nije pronadjena.";
     }
 
     private string? Validiraj(Adresa adresa)

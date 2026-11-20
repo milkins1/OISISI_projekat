@@ -6,7 +6,7 @@ Cilj projekta je razvoj informacionog sistema za upravljanje sajmom knjiga, kori
 
 ## Članovi tima
 
-- **Student 1:** Mihailo Pljevaljičić (GitHub: @mihailop04)
+- **Student 1:** Mihailo Pljevaljčić (GitHub: @mihailop04)
 - **Student 2:** Mile Ivanić (GitHub: @milkins1)
 
 Rad na projektu je podeljen prema specifikaciji.
@@ -31,13 +31,21 @@ U okviru Core projekta kreirani su početni fajlovi za svih šest modela, kao i 
 - Uspešno izvršen Build svih projekata.
 - Provereno pokretanje početne WPF aplikacije.
 
-## Zajednička serijalizacija - Mihailo Pljevaljičić
+## Izvori i osnova implementacije
+
+- CSV serijalizacija i osnovni CRUD obrasci prilagodjeni su prema
+  primeru CRUDExample sa 3. vezbi, posebno ISerializable,
+  ToCSV/FromCSV i VehiclesDAO.
+- Modeli, poslovne validacije i uskladjivanje veza prilagodjeni su
+  zahtevima projekta Sajam knjiga.
+
+## Zajednička serijalizacija - Mihailo Pljevaljčić
 
 - Implementirani ISerializable, Serializer<T> i Storage<T> po uzoru na primer CRUDExample sa vežbi.
 - Podaci se čuvaju u CSV fajlovima u folderu Data, a putanje se grade pomoću Path.Combine.
 - Dodate konverzije za datum, enum, listu ID-jeva i vrednost koja može biti prazna.
 
-## Implementacija posetilaca - Mihailo Pljevaljičić
+## Implementacija posetilaca - Mihailo Pljevaljčić
 
 - Implementirani model Posetilac i enum Status sa CSV serijalizacijom i deserijalizacijom.
 - Dodati IPosetilacDao, PosetilacDao i PosetilacService.
@@ -47,7 +55,7 @@ U okviru Core projekta kreirani su početni fajlovi za svih šest modela, kao i 
 - Prosečna ocena posetioca se računa iz njegovih kupovina.
 - Brisanjem posetioca brišu se i njegove kupovine.
 
-## Implementacija kupovina - Mihailo Pljevaljičić
+## Implementacija kupovina - Mihailo Pljevaljčić
 
 - Implementiran model Kupovina sa CSV serijalizacijom i deserijalizacijom.
 - Dodati IKupovinaDao, KupovinaDao i KupovinaService.
@@ -55,7 +63,7 @@ U okviru Core projekta kreirani su početni fajlovi za svih šest modela, kao i 
 - Kupovine su povezane sa glavnim konzolnim menijem.
 - Dodate provere da posetilac i knjiga postoje, da je ocena od 1 do 5 i da datum nije u budućnosti.
 
-## Implementacija izdavača - Mihailo Pljevaljičić
+## Implementacija izdavača - Mihailo Pljevaljčić
 
 - Implementiran model Izdavac sa CSV serijalizacijom i deserijalizacijom.
 - Dodati IIzdavacDao, IzdavacDao i IzdavacService.
@@ -63,7 +71,7 @@ U okviru Core projekta kreirani su početni fajlovi za svih šest modela, kao i 
 - Izdavači su povezani sa glavnim konzolnim menijem.
 - Dodate provere obaveznih polja, jedinstvene šifre i nedozvoljenih znakova.
 
-## Konzolni deo - Mihailo Pljevaljičić
+## Konzolni deo - Mihailo Pljevaljčić
 
 - Implementirani ConsoleViewUtils, PosetilacController, KupovinaController i IzdavacController.
 - ConsoleViewUtils bezbedno čita brojeve, datume i tekst iz konzole.
@@ -77,6 +85,7 @@ U okviru Core projekta kreirani su početni fajlovi za svih šest modela, kao i 
 - Implementirani i testirani konzolni prikaz,dodavanje,izmena i brisanje adresa.
 - Adrese su povezane sa glavnim konzolnim menijem.
 - Dodate provere obaveznih polja i nedozvoljenih znakova.
+- Dodata zabrana brisanja adrese koju koristi autor ili posetilac.
 
 ## Implementacija autora - Mile Ivanić
 

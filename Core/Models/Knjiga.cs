@@ -16,6 +16,11 @@ public class Knjiga : ISerializable
     public int IzdavacId { get; set; }
 
 
+    /*
+    Obrazac ToCSV/FromCSV prilagodjen prema primeru CRUDEexample
+    sa 3. vezbi. CSV polja prilagodjena su ovom modelu 
+    */
+
     public string[] ToCSV()
     {
         string[] csvValues =

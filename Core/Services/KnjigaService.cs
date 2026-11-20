@@ -41,6 +41,8 @@ public class KnjigaService
 
         _knjigaDao.Add(knjiga);
 
+
+
         UskladiVeze(
             knjiga.AutoriIds,
             new List<int> { knjiga.IzdavacId });
@@ -231,6 +233,12 @@ public class KnjigaService
             .Replace(" ", "")
             .ToUpperInvariant();
     }
+
+
+    /*
+     Na osnovu knjiga ponovo odredjuem liste knjiga autora
+    i liste knjiga i autora izdavaca obuhvacenih promenom
+     */
 
     private void UskladiVeze(
         List<int> autoriIds,

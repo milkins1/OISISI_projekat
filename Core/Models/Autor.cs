@@ -16,6 +16,12 @@ public class Autor : ISerializable
     public int GodineIskustva { get; set; }
     public List<int> KnjigeIds { get; set; } = new List<int>();
 
+
+    /*
+    Obrazac ToCSV/FromCSV prilagodjen prema primeru CRUDEexample
+    sa 3. vezbi. CSV polja prilagodjena su ovom modelu 
+    */
+
     public string[] ToCSV()
     {
         string[] csvValues =

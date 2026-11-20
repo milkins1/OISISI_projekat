@@ -22,7 +22,7 @@ class Program
         PosetilacService posetilacService = new PosetilacService(posetilacDao, kupovinaDao);
         KupovinaService kupovinaService = new KupovinaService(kupovinaDao, posetilacDao, knjigaDao);
         IzdavacService izdavacService = new IzdavacService(izdavacDao);
-        AdresaService adresaService = new AdresaService(adresaDao);
+        AdresaService adresaService = new AdresaService(adresaDao,autorDao, posetilacDao);
         AutorService autorService = new AutorService(autorDao, adresaDao, izdavacDao);
         KnjigaService knjigaService = new KnjigaService(knjigaDao, autorDao, izdavacDao, kupovinaDao, posetilacDao);
 

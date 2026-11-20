@@ -2,6 +2,7 @@ using Oisisi.Core.Interfaces;
 
 namespace Oisisi.Core.Models;
 
+
 public class Adresa : ISerializable
 {
     public int Id { get; set; }  //ovako povezujem adresu sa drugim entitetima
@@ -22,6 +23,12 @@ public class Adresa : ISerializable
         Drzava = drzava;
     }
 
+
+    /*
+    Obrazac ToCSV/FromCSV prilagodjen prema primeru CRUDEexample
+    sa 3. vezbi. CSV polja prilagodjena su ovom modelu 
+    */
+    
     public string[] ToCSV()
     {
         string[] csvValues =
